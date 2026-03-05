@@ -1,80 +1,93 @@
-#root { max-width: 900px; margin: 0 auto; }
+/* Layout */
+.layout { display: flex; min-height: 100vh; }
 
-/* Header */
-.app-header {
-  background: #1a1a2e;
-  color: #fff;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+/* Sidebar */
+.sidebar {
+  width: 200px; min-width: 200px; background: #1a1a2e;
+  overflow-y: auto; position: sticky; top: 0; height: 100vh;
 }
-.app-header h1 { font-size: 1.1rem; margin: 0; padding: 16px 0; font-weight: 700; white-space: nowrap; }
+.sidebar-title {
+  color: #fff; font-size: 1rem; font-weight: 700;
+  padding: 20px 16px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-/* Date tabs */
-.date-tabs { display: flex; gap: 2px; overflow-x: auto; padding: 4px 0; scrollbar-width: none; }
-.date-tabs::-webkit-scrollbar { display: none; }
-.date-tab {
-  background: transparent; border: none; color: rgba(255,255,255,0.6);
-  padding: 10px 14px; cursor: pointer; font-size: 0.85rem; white-space: nowrap;
-  border-bottom: 3px solid transparent; border-radius: 0; transition: color 0.15s;
+/* Month group */
+.month-group { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.month-header {
+  width: 100%; background: none; border: none; color: rgba(255,255,255,0.75);
+  padding: 10px 16px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
+  display: flex; align-items: center; gap: 6px; text-align: left;
+  transition: background 0.1s;
 }
-.date-tab:hover { color: #fff; }
-.date-tab.active { color: #fff; border-bottom-color: #4dabf7; }
+.month-header:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.month-arrow { font-size: 0.7rem; width: 12px; }
+.month-count {
+  margin-left: auto; background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.6); border-radius: 10px;
+  padding: 1px 7px; font-size: 0.72rem;
+}
+.month-dates { padding: 2px 0 6px; }
+.day-item {
+  display: block; width: 100%; background: none; border: none;
+  color: rgba(255,255,255,0.55); padding: 7px 16px 7px 32px;
+  cursor: pointer; font-size: 0.85rem; text-align: left;
+  transition: background 0.1s, color 0.1s;
+}
+.day-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.day-item.active { color: #4dabf7; font-weight: 700; }
+
+/* Main column */
+.main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 
 /* Source filter */
 .source-filter {
   background: #fff; border-bottom: 1px solid #e9ecef;
-  padding: 12px 20px; display: flex; gap: 8px; flex-wrap: wrap;
-  position: sticky; top: 52px; z-index: 9;
+  padding: 10px 20px; display: flex; gap: 8px; flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 9;
 }
 .source-btn {
   background: #f1f3f5; border: none; border-radius: 20px;
-  padding: 6px 14px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
+  padding: 5px 13px; cursor: pointer; font-size: 0.8rem; font-weight: 600;
   color: #495057; transition: background 0.15s, color 0.15s;
 }
 .source-btn:hover { background: #e9ecef; }
 .source-btn.active { background: #1971c2; color: #fff; }
 
-/* Main */
-.app-main { padding: 20px; }
+/* Date heading */
+.date-heading {
+  font-size: 0.75rem; font-weight: 700; color: #adb5bd;
+  padding: 16px 20px 0; text-transform: uppercase; letter-spacing: 0.8px;
+}
+
+/* Main content */
+.app-main { padding: 12px 20px 32px; }
 
 /* Source section */
-.source-section { margin-bottom: 32px; }
+.source-section { margin-bottom: 28px; }
 .source-title {
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; color: #868e96; margin-bottom: 12px;
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #868e96; margin-bottom: 10px;
   display: flex; align-items: center; gap: 8px;
 }
 .source-title::after { content: ""; flex: 1; height: 1px; background: #e9ecef; }
 
 /* Article card */
 .article-card {
-  background: #fff; border-radius: 10px; padding: 16px 20px;
-  margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  background: #fff; border-radius: 10px; padding: 14px 18px;
+  margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   transition: box-shadow 0.15s;
 }
 .article-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
 .article-card a {
-  color: #1a1a2e; text-decoration: none; font-size: 0.95rem;
+  color: #1a1a2e; text-decoration: none; font-size: 0.92rem;
   font-weight: 600; line-height: 1.4; display: block; margin-bottom: 8px;
 }
 .article-card a:hover { color: #1971c2; }
 .article-summary {
-  color: #495057; font-size: 0.875rem; line-height: 1.65;
+  color: #495057; font-size: 0.86rem; line-height: 1.65;
   border-left: 3px solid #4dabf7; padding-left: 12px; margin: 0;
 }
-.no-summary { color: #adb5bd; font-size: 0.82rem; font-style: italic; }
-
-/* Source badge colors */
-.badge-hatena  { background: #00a4de18; color: #0077b6; }
-.badge-hn      { background: #ff660018; color: #cc5200; }
-.badge-reddit  { background: #ff450018; color: #cc2200; }
-.badge-aikido  { background: #7c3aed18; color: #6d28d9; }
-.badge-wiz     { background: #05966918; color: #047857; }
+.no-summary { color: #adb5bd; font-size: 0.8rem; font-style: italic; margin: 0; }
 
 /* Empty */
 .empty { text-align: center; color: #adb5bd; padding: 60px 0; font-size: 0.95rem; }
